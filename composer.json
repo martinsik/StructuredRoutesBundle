@@ -1,0 +1,23 @@
+{
+    "name": "martinsik/structured-routes",
+    "authors": [
+        {
+            "name": "Martin Sikora",
+            "email": "lazyeuropean@gmail.com"
+        }
+    ],
+    "require": {
+        "php":  ">=5.4.0"
+    },
+    "require-dev":  {
+
+    },
+    "autoload":     {
+        "psr-4": { "MS\\StructuredRoutes\\": "src/StructuredRoutes" }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MS\\StructuredRoutes\\Tests\\": "tests/MS/StructuredRoutes/Tests"
+        }
+    }
+}
