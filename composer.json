@@ -1,5 +1,9 @@
 {
     "name": "martinsik/structured-routes",
+    "homepage": "https://github.com/martinsik/StructuredRoutesBundle",
+    "description": "Package for defining routes for Symfony3 router in an objective and tree-like structure way",
+    "keywords": ["symfony3", "router"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Martin Sikora",
