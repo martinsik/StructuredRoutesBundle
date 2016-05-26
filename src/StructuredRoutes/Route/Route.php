@@ -1,5 +1,8 @@
 <?php
 
-namespace MS\StructureRoutes\Route;
+namespace MS\StructuredRoutes\Route;
 
+class Route extends AbstractRoute
+{
 
+}

@@ -1,15 +1,12 @@
 <?php
 
-namespace MS\StructureRoutes\Route;
+namespace MS\StructuredRoutes\Route;
 
-use MS\StructureRoutes\Target\Target;
-use MS\StructureRoutes\Target\TargetInterface;
+use MS\StructuredRoutes\Target\Target;
+use MS\StructuredRoutes\Target\TargetInterface;
 
 abstract class AbstractRoute implements RouteInterface
 {
-
-    /** @var string */
-    private $name;
 
     /** @var string */
     private $pattern;
@@ -24,20 +21,11 @@ abstract class AbstractRoute implements RouteInterface
     private $children = [];
 
 
-    public function __construct($name, $pattern, $target = null, $children = [])
+    public function __construct($pattern, $target = null, $children = [])
     {
-        $this->name = $name;
         $this->pattern = $pattern;
-    }
-
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    public function getName()
-    {
-        return $this->name;
+        $this->target = $target;
+        $this->children = $children;
     }
 
     public function setPattern(RouteInterface $pattern)
@@ -92,7 +80,6 @@ abstract class AbstractRoute implements RouteInterface
 
     public function addChild(RouteInterface $child)
     {
-        $child->setPattern($this);
         $this->children[] = $child;
     }
 

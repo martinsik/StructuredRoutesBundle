@@ -1,6 +1,6 @@
 <?php
 
-namespace MS\StructureRoutes\Target;
+namespace MS\StructuredRoutes\Target;
 
 interface TargetInterface
 {

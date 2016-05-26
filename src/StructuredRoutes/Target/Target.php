@@ -1,6 +1,6 @@
 <?php
 
-namespace MS\StructureRoutes\Target;
+namespace MS\StructuredRoutes\Target;
 
 class Target implements TargetInterface
 {
@@ -10,7 +10,7 @@ class Target implements TargetInterface
     private $resource;
 
 
-    public function __construct($resource, $statusCode)
+    public function __construct($resource, $statusCode = 200)
     {
         $this->statusCode = $statusCode;
         $this->resource = $resource;

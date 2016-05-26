@@ -1,13 +1,9 @@
 <?php
 
-namespace MS\StructureRoutes\Route;
+namespace MS\StructuredRoutes\Route;
 
 interface RouteInterface
 {
-    public function setName($name);
-
-    public function getName();
-
 
     public function setPattern(RouteInterface $pattern);
 
