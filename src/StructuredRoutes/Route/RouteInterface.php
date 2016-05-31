@@ -9,7 +9,7 @@ interface RouteInterface
 
     public function getPattern();
     
-    public function generateStructure();
+    public function getAbsoluteUrl();
 
 
     public function setTarget($target);
@@ -17,6 +17,8 @@ interface RouteInterface
     public function getTarget();
 
 
+    public function setParent($parent);
+    
     public function getParent();
 
     public function moveTo(RouteInterface $parent);
@@ -25,6 +27,8 @@ interface RouteInterface
     public function addChild(RouteInterface $child);
 
     public function getChildren();
-    
+
+    public function getAllChildren();
+
     public function removeChild(RouteInterface $child);
 }

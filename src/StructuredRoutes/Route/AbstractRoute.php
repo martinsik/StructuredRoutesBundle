@@ -21,11 +21,12 @@ abstract class AbstractRoute implements RouteInterface
     private $children = [];
 
 
-    public function __construct($pattern, $target = null, $children = [])
+    public function __construct($pattern, $target = null, $parent = null, $children = [])
     {
         $this->pattern = $pattern;
         $this->target = $target;
         $this->children = $children;
+        $this->parent = $parent;
     }
 
     public function setPattern(RouteInterface $pattern)
@@ -38,7 +39,7 @@ abstract class AbstractRoute implements RouteInterface
         return $this->pattern;
     }
 
-    public function generateStructure()
+    public function getAbsoluteUrl()
     {
         $patterns = [];
         $route = $this;
@@ -47,7 +48,7 @@ abstract class AbstractRoute implements RouteInterface
             $route = $route->getParent();
         }
 
-        return implode('/', array_reverse($patterns));
+        return implode('/', array_reverse($patterns)) ?: '/';
     }
 
 
@@ -65,6 +66,10 @@ abstract class AbstractRoute implements RouteInterface
         return $this->target;
     }
 
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
+    }
 
     public function getParent()
     {
@@ -81,11 +86,27 @@ abstract class AbstractRoute implements RouteInterface
     public function addChild(RouteInterface $child)
     {
         $this->children[] = $child;
+        $child->setParent($this);
     }
 
     public function getChildren()
     {
         return $this->children;
+    }
+
+    public function getAllChildren()
+    {
+        $queue = $this->getChildren();
+        $children = [];
+
+        while (count($queue) > 0) {
+            $route = array_shift($queue);
+            $children[] = $route;
+
+            $queue = array_merge($queue, $route->getChildren());
+        }
+
+        return $children;
     }
 
     public function removeChild(RouteInterface $child)
