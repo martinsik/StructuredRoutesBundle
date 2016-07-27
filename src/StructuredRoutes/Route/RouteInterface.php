@@ -18,9 +18,9 @@ interface RouteInterface
     public function getAbsoluteUrl();
 
 
-    public function setTarget($target);
-
-    public function getTarget();
+//    public function setTarget($target);
+//
+//    public function getTarget();
 
 
     public function setParent($parent);
