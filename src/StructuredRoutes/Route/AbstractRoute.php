@@ -41,16 +41,10 @@ abstract class AbstractRoute implements RouteInterface
 
     public function getAbsoluteUrl()
     {
-        $patterns = [];
-        $route = $this;
-        while ($route != null) {
-            $patterns[] = trim($route->getPattern(), '/');
-            $route = $route->getParent();
-        }
-
-        return implode('/', array_reverse($patterns)) ?: '/';
+        return implode('/', array_map(function(RouteInterface $route) {
+            return trim($route->getPattern(), '/');
+        }, $this->getPathToRoot()));
     }
-
 
     public function setTarget($target)
     {
@@ -119,6 +113,35 @@ abstract class AbstractRoute implements RouteInterface
         }
 
         return false;
+    }
+
+    public function getParameters()
+    {
+        if (preg_match_all('#({[a-zA-Z0-9\-_]+})[/|\z]*#', $this->getAbsoluteUrl(), $matches)) {
+            return $matches[1];
+        } else {
+            return [];
+        }
+    }
+
+    public function hasParameters()
+    {
+        return count($this->getParameters()) > 0;
+    }
+
+    /**
+     * @return RouteInterface[]
+     */
+    public function getPathToRoot()
+    {
+        $path = [];
+        $route = $this;
+        while ($route != null) {
+            $path[] = $route;
+            $route = $route->getParent();
+        }
+
+        return array_reverse($path);
     }
 
 }

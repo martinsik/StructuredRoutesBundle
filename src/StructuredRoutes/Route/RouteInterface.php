@@ -8,7 +8,13 @@ interface RouteInterface
     public function setPattern(RouteInterface $pattern);
 
     public function getPattern();
-    
+
+    public function getParameters();
+
+    public function hasParameters();
+
+    public function getPathToRoot();
+
     public function getAbsoluteUrl();
 
 
