@@ -35,9 +35,11 @@ abstract class AbstractRoute implements RouteInterface
 
     public function getAbsoluteUrl()
     {
-        return implode('/', array_map(function(RouteInterface $route) {
+        $url = implode('/', array_map(function(RouteInterface $route) {
             return trim($route->getPattern(), '/');
         }, $this->getPathToRoot()));
+
+        return '/' . trim($url, '/');
     }
 
     public function setParent($parent)
