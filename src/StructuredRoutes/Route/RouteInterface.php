@@ -5,7 +5,7 @@ namespace MS\StructuredRoutes\Route;
 interface RouteInterface
 {
 
-    public function setPattern(RouteInterface $pattern);
+    public function setPattern($pattern);
 
     public function getPattern();
 

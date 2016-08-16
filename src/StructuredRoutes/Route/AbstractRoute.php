@@ -8,7 +8,6 @@ abstract class AbstractRoute implements RouteInterface
     /** @var string */
     private $pattern;
 
-
     /** @var RouteInterface */
     private $parent;
 
@@ -23,7 +22,7 @@ abstract class AbstractRoute implements RouteInterface
         $this->parent = $parent;
     }
 
-    public function setPattern(RouteInterface $pattern)
+    public function setPattern($pattern)
     {
         $this->pattern = $pattern;
     }
