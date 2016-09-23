@@ -58,9 +58,13 @@ abstract class AbstractRoute implements RouteInterface
     }
 
 
-    public function addChild(RouteInterface $child)
+    public function addChild(RouteInterface $child, $prepend = false)
     {
-        $this->children[] = $child;
+        if ($prepend) {
+            array_unshift($this->children, $child);
+        } else {
+            $this->children[] = $child;
+        }
         $child->setParent($this);
     }
 
